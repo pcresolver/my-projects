@@ -1,37 +1,34 @@
 from sys import argv
 
-script, filename = argv
+script, input_file, output_file = argv
 
-print("we're going to rease {}." .format(filename))
-print("If you don't want that, hit CTRL-C")
-print("If you do want that, hit RETURN")
+def print_all(f):
+	print(f.read())
+	
+def rewind(f):
+	f.seek(0)
+	
+def print_a_line(line_count, f):
+	print(line_count, f.readline())
 
-input("?")
+current_file = open(input_file)
 
-print ("Opening the file...")
-target = open(filename, 'w')
+print("First, let's print the whole file:\n")
 
-print("Truncating the file. Goodbye")
-target.truncate()
+print_all(current_file)
 
-print("Now I'm going to ask you for three lines:")
+print("Now let's rewind, kind of like a tape.")
 
-line1 = input("line 1: ")
-line2 = input("line 2: ")
-line3 = input("line 3: ")
+rewind(current_file)
 
-print("I'm going to write these to the file:")
+print("Let's print three lines:")
 
-target.write(line1)
-target.write("\n")
-target.write(line2)
-target.write("\n")
-target.write(line3)
-target.write("\n")
+current_line = 1
+print_a_line(current_line, current_file)
 
-new_line = "\n"
+current_line = current_line + 1
+print_a_line(current_line, current_file)
 
-target.write("{1}{0}{2}{0}{3}{0}" .format(new_line, line1, line2, line3))
+current_line = current_line + 1
+print_a_line(current_line, current_file)
 
-print("and finally we close it")
-target.close()
