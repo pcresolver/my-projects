@@ -1,5 +1,5 @@
 #Define Variables
-#Define Teams
+#Define Football Teams
 teamA="England"
 teamB="Spain"
 teamC="Croatia"
