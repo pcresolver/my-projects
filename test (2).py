@@ -1,5 +1,5 @@
 #Define Variables
-#Define World CupFootball Teams
+#Define World Cup Football Teams
 teamA="England"
 teamB="Spain"
 teamC="Croatia"
