@@ -2,7 +2,7 @@
 # two strings, a search string and a target string,
 # and returns the last position in the search string
 # where the target string appears, or -1 if there
-# are no occurences.
+# are no occurrences.
 #
 # Example: find_last('aaaa', 'a') returns 3
 
