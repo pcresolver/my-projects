@@ -14,45 +14,16 @@ team_group_a = set([])  # create empty set to store teams
 
 def init():
     for i in range(teams_in_group):  # create first group
-        name = eval("team" + str(i + 1))  #converts string to variable name
+        name = eval("team" + str(i + 1))  # converts string to variable name
         a_team = Team(name)  # create team with name - name
         team_group_a.add(a_team)  # add a_team to team group
 
 
-def produce_results():
+def produce_results(fixtureslist):
     match4 = [team1, 0, team3, 0]
     match1 = [team1, 9, team6, 0]
     match2 = [team2, 1, team5, 1]
     match3 = [team1, 0, team3, 0]
-    # team1	0:0	team3
-    #team6	1:5 	team2
-    #team1	9:0 	team6
-    #team2	1:1 	team5
-    #team3	4:0 	team4
-    #team4	1:1 	team2
-    #team5	0:4 	team1
-    #team5	1:1 	team3
-    #team1	2:1 	team4
-    #team2	5:0 	team6
-    #team4	0:1 	team5
-    #team6	0:8 	team3
-    #team2	1:3 	team1
-    #team5	3:0 	team6
-    #team2	1:1 	team3
-    #team1	0:1 	team5
-    #team6	0:2 	team4
-    #team4	0:0		team1
-    #team3	5:0 	team6
-    #team2	2:0 	team4
-    #team6	0:6 	team5
-    #team3	1:1 	team1
-    #team4	0:5 	team3
-    #team5	2:2 	team2
-    #team3	-	team5
-    #team1	-	team2
-    #team4	-	team6
-    #team6	-	team1
-    #team5	-	team4
     produce_results = [match1, match2, match3, match4]
     return produce_results
 
@@ -62,6 +33,30 @@ def find_element(search,
     # this can then be used to work out the result of the matches and build the table
     return [element for element in content if element[0] == search or element[2] == search]
 
+
+def get_fixtures():
+    with open('fixtures.txt') as fixturesfile:
+        fixtureslist = fixturesfile.read().split()
+    print(fixtureslist)
+    return fixtureslist
+
+
+def clean_up(fixtures):
+    # remove half time scores
+    for entry in fixtures:
+        if '(' in entry:
+            assert isinstance(entry, object)
+            fixtures.remove(entry)
+    return fixtures
+
+def split_matches(fixtures, n): # split fixtures list into individual matches
+    n = 3
+    print('fixtures:', fixtures)
+    if n < 1:
+        n = 1
+    temp_result = [fixtures[i:i + n] for i in range(0, len(fixtures), n)]
+    print("these are what i think is the result so far ", temp_result)
+    return temp_result
 
 # Define classes
 class Team:
@@ -79,16 +74,15 @@ class Result:
         return
 
 
-    #
+        #
 
 # Let's get started
 init()
-results = produce_results()
-print(results)
+fixtures = get_fixtures()
+results = clean_up(fixtures)
+print("fixtures before produce results is called: ", fixtures)
+# results = produce_results(fixtures)
+print("these are the results so far ", split_matches(results, 3))
 
-for team in team_group_a:
-    print(team.get_name())
-    if find_element(team.get_name(), results):
-        print(find_element(team.get_name(), results))
-        print(team.get_name() + " have played")
+
 	
