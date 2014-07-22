@@ -19,15 +19,6 @@ def init():
         team_group_a.add(a_team)  # add a_team to team group
 
 
-def produce_results(fixtureslist):
-    match4 = [team1, 0, team3, 0]
-    match1 = [team1, 9, team6, 0]
-    match2 = [team2, 1, team5, 1]
-    match3 = [team1, 0, team3, 0]
-    produce_results = [match1, match2, match3, match4]
-    return produce_results
-
-
 def find_element(search,
                  content):  # returns the first element in content that contains the element to be found - search
     # this can then be used to work out the result of the matches and build the table
@@ -41,21 +32,23 @@ def get_fixtures():
     return fixtureslist
 
 
-def clean_up(fixtures):
+def clean_up(fixtures_messy):
     # remove half time scores
-    for entry in fixtures:
+    for entry in fixtures_messy:
         if '(' in entry:
             assert isinstance(entry, object)
-            fixtures.remove(entry)
-    return fixtures
+            fixtures_messy.remove(entry)
+    return fixtures_messy
 
-def split_matches(fixtures, n): # split fixtures list into individual matches
-    # n = 3 #
+
+def split_matches(fixtures_blob, n):  # split fixtures list into individual matches
+    # I expect n to be 3
     if n < 1:
         n = 1
-    temp_result = [fixtures[i:i + n] for i in range(0, len(fixtures), n)]
-    print("these are what i think is the result so far ", temp_result)
-    return temp_result
+    fixtures_split = [fixtures_blob[i:i + n] for i in range(0, len(fixtures_blob), n)]
+    print("these are what I think is the result so far ", fixtures_split)
+    return fixtures_split
+
 
 # Define classes
 class Team:
@@ -82,5 +75,3 @@ results = clean_up(fixtures)
 print("fixtures before results are split is called: ", fixtures)
 results = split_matches(results, 3)
 print("these are the results so far ", results)
-
-	
