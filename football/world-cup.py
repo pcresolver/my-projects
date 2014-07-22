@@ -50,8 +50,7 @@ def clean_up(fixtures):
     return fixtures
 
 def split_matches(fixtures, n): # split fixtures list into individual matches
-    n = 3
-    print('fixtures:', fixtures)
+    # n = 3 #
     if n < 1:
         n = 1
     temp_result = [fixtures[i:i + n] for i in range(0, len(fixtures), n)]
@@ -80,9 +79,8 @@ class Result:
 init()
 fixtures = get_fixtures()
 results = clean_up(fixtures)
-print("fixtures before produce results is called: ", fixtures)
-# results = produce_results(fixtures)
-print("these are the results so far ", split_matches(results, 3))
-
+print("fixtures before results are split is called: ", fixtures)
+results = split_matches(results, 3)
+print("these are the results so far ", results)
 
 	
