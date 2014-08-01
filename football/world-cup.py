@@ -46,8 +46,31 @@ def split_matches(fixtures_blob, n):  # split fixtures list into individual matc
     if n < 1:
         n = 1
     fixtures_split = [fixtures_blob[i:i + n] for i in range(0, len(fixtures_blob), n)]
-    print("these are what I think is the result so far ", fixtures_split)
+    # print("SCORES are :", fixtures_split)
+    home_goals = fixtures_split[0][1][0]
+    # print("Home Goals: ", home_goals)
+    results_copy = fixtures_split
+    for result in fixtures_split:
+        if str(result[1]) == "-":
+            pass
+            # print(result[1])
+        else:
+            home_goals = result[1][0]
+            away_goals = result[1][2]
+            result[1] = home_goals
+            result.append(away_goals)
+            # print("home goals:", home_goals, "away:", away_goals, "result: ", result)
+            # result.append(results_copy[][1][1])
+            # result[1] = results_copy[1][1][0]
+            # print("scores: ", result[1], result[3])
+
     return fixtures_split
+
+
+def process_results(results) -> object:
+    for result in results:
+        return
+    return
 
 
 # Define classes
@@ -75,3 +98,4 @@ results = clean_up(fixtures)
 print("fixtures before results are split is called: ", fixtures)
 results = split_matches(results, 3)
 print("these are the results so far ", results)
+process_results(results)
