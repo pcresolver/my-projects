@@ -58,12 +58,13 @@ def split_matches(fixtures_blob, n):  # split into individual matches - split in
     return fixtures_split
 
 
-def process_results(resultssofar) -> object:  # using this to see if I can add goals up. so far only works on first result
+def process_results(
+        resultssofar) -> object:  # using this to see if I can add goals up. so far only works on first result
     total_goals = 0
     print("results so far: ", resultssofar)
     for match_result in resultssofar:
         print(match_result)
-        print(match_result[1], " versus ", match_result[3] )
+        print(match_result[1], " versus ", match_result[3])
         total_goals += int(match_result[1]) + int(match_result[3])
         print("goals so far: ", total_goals)
     return
@@ -73,22 +74,45 @@ def process_results(resultssofar) -> object:  # using this to see if I can add g
 class Team:
     def __init__(self, name):
         self.name = name
+        self.scored = 0
+        self.against = 0
+        self.points = 0
+        self.opposition = []
         return
 
     def get_name(self):
         return self.name
 
+    def get_for(self):
+        return self.scored
 
-# class Result:
-#     def __init__(self, name):
-#         self.name = name
-#         return
+    def get_against(self):
+        return self.against
+
+    def get_points(self):
+        return self.points
+
+    def process_result(self, opposition, scored, against):
+        self.opposition.append([opposition, scored, against])
+        self.scored += scored
+        self.against += against
+        if scored == against:
+            self.points += 1
+        elif scored > against:
+            self.points += 3
+        print("Result, for, against, points", str(self.opposition), self.scored, self.against, self.points)
+
 
 # Let's get started
 init()
+england = Team("England")
+
+england.process_result("Poland", 2, 1)
+england.process_result("Moldovo", 1, 1)
 fixtures = get_fixtures()
 results = clean_up(fixtures)
 print("Fixtures before results are split is called: ", fixtures)
 results = split_matches(results, 3)
 print("These are the results so far ", results)
-process_results(results)
+
+# process_results(results)
