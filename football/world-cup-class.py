@@ -59,12 +59,16 @@ def split_matches(fixtures_blob, n):  # split into individual matches - split in
 
 
 def process_results(
-        resultssofar) -> object:  # using this to see if I can add goals up. so far only works on first result
+        resultssofar) -> object:  # using this to see if I can add goals up.
     total_goals = 0
     print("results so far: ", resultssofar)
     for match_result in resultssofar:
         print(match_result)
-        print(match_result[1], " versus ", match_result[3])
+        if '-' in match_result:
+            return
+        print(match_result[0], " versus ", match_result[2])
+        if match_result[0] == "England" or match_result[2] == "England":
+            print("This is England")
         total_goals += int(match_result[1]) + int(match_result[3])
         print("goals so far: ", total_goals)
     return
@@ -109,10 +113,11 @@ england = Team("England")
 
 england.process_result("Poland", 2, 1)
 england.process_result("Moldovo", 1, 1)
+
 fixtures = get_fixtures()
 results = clean_up(fixtures)
 print("Fixtures before results are split is called: ", fixtures)
 results = split_matches(results, 3)
 print("These are the results so far ", results)
 
-# process_results(results)
+process_results(results)
