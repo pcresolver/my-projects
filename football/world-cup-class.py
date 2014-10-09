@@ -71,6 +71,7 @@ def process_results(
             print("This is England")
         total_goals += int(match_result[1]) + int(match_result[3])
         print("goals so far: ", total_goals)
+        eval(match_result[0]).process_result(match_result[2],match_result[1], match_result[3])
     return
 
 
@@ -97,7 +98,7 @@ class Team:
         return self.points
 
     def process_result(self, opposition, scored, against):
-        self.opposition.append([opposition, scored, against])
+        self.opposition.append([opposition, scored, against]) # creates a record of results for use in case of ties
         self.scored += scored
         self.against += against
         if scored == against:
@@ -116,8 +117,10 @@ england.process_result("Moldovo", 1, 1)
 
 fixtures = get_fixtures()
 results = clean_up(fixtures)
-print("Fixtures before results are split is called: ", fixtures)
+# print("Fixtures before results are split is called: ", fixtures)
 results = split_matches(results, 3)
 print("These are the results so far ", results)
 
 process_results(results)
+# need to creat teams
+# need to make sure process_results call to team.process_results works
