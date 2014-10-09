@@ -1,6 +1,6 @@
 # Global Variables
 teams_in_group = 6
-
+# testing vs link
 # Initialise
 
 team1 = "Ukraine"
