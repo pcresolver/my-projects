@@ -1,23 +1,28 @@
 # Global Variables
-teams_in_group = 6
-# testing vs link
-# Initialise
-
-team1 = "Ukraine"
-team2 = "Poland"
-team3 = "England"
-team4 = "Moldova"
-team5 = "Montenegro"
-team6 = "San Marino"
-team_group_a = set([])  # create empty set to store teams
-
-
-def init():
-    for i in range(teams_in_group):  # create first group by creating objects of class Team from team list
-        name = eval("team" + str(i + 1))  # converts string to variable name
-        a_team = Team(name)  # create team with name - name
-        team_group_a.add(a_team)  # add a_team to team group
-
+def get_group_teams(resultssofar, group_teams):
+    team_list = []
+    print( "in get teams function", resultssofar)
+    for match_result in resultssofar:  # to update the team objects with info from the results
+        print("I am processing this result", match_result)
+        print("team is: ", match_result[0])
+        if match_result[0] not in team_list:  # need to create a team
+            print(team_list)
+            print("adding ", match_result[0])
+            #  create_team((match_result[0].lower()), group_teams)  # create a team object for the home team
+            team_list.append(match_result[0])
+            print("added: ", match_result[0] )
+            print(team_list)
+        if match_result[2] not in team_list:
+            print(team_list)
+            print("adding ", match_result[2])
+            #  create_team((match_result[2].lower()), group_teams)
+            team_list.append(match_result[2])
+            print("added: ", match_result[2])
+            print(team_list)
+        if '-' in match_result:  # no result yet. this is a future fixture so ignore this and all others that follow
+            pass
+    print("final team list is: ******", team_list)
+    return
 
 def find_element(search,
                  content):  # returns the first element in content that contains the element to be found - search
@@ -63,15 +68,19 @@ def process_results(
     total_goals = 0
     print("results so far: ", resultssofar)
     for match_result in resultssofar:
-        print(match_result)
-        if '-' in match_result:
-            return
         print(match_result[0], " versus ", match_result[2])
-        if match_result[0] == "England" or match_result[2] == "England":
-            print("This is England")
+        hometeam = group_teams[(match_result[0]).lower()]  # hometeam now points to the home team object
+        print("home team is: ", hometeam.name)
+        print("hometeam scored : ", hometeam.name, " ", hometeam.scored)
+        hometeam.scored += int(match_result[1])
+        print("hometeam have now scored : ", hometeam.scored)
+        awayteam = group_teams[(match_result[2]).lower()]  # hometeam now points to the home team object
+        print("away team is: ", awayteam.name)
+        print("awayteam scored : ", awayteam.scored)
+        awayteam.scored += int(match_result[3])
+        print("away team have now scored : ", awayteam.name, " ", awayteam.scored)
         total_goals += int(match_result[1]) + int(match_result[3])
         print("goals so far: ", total_goals)
-        eval(match_result[0]).process_result(match_result[2],match_result[1], match_result[3])
     return
 
 
@@ -98,7 +107,7 @@ class Team:
         return self.points
 
     def process_result(self, opposition, scored, against):
-        self.opposition.append([opposition, scored, against]) # creates a record of results for use in case of ties
+        self.opposition.append([opposition, scored, against])
         self.scored += scored
         self.against += against
         if scored == against:
@@ -108,19 +117,25 @@ class Team:
         print("Result, for, against, points", str(self.opposition), self.scored, self.against, self.points)
 
 
-# Let's get started
-init()
-england = Team("England")
+def create_team(new_team_name, group_teams):
+    new_team = Team(new_team_name)  # create Team object called new_team_name
+    print(new_team.name)
+    group_teams[new_team.name] = new_team  # Add the new_team object to the group_teams dic
+    return group_teams
 
-england.process_result("Poland", 2, 1)
-england.process_result("Moldovo", 1, 1)
+# Let's get started
+group_teams = {}  # create dic to store team objects
+#  create_team("blank team")
 
 fixtures = get_fixtures()
 results = clean_up(fixtures)
-# print("Fixtures before results are split is called: ", fixtures)
+print("Here are the Fixtures before results are split is called: ", fixtures)
 results = split_matches(results, 3)
 print("These are the results so far ", results)
-
-process_results(results)
-# need to creat teams
-# need to make sure process_results call to team.process_results works
+get_group_teams(results, group_teams)
+process_results(results) # error: team is being created twice - overwriting previous creation and resetting goals etc.
+print("this is the teams dic: ", group_teams)
+'''
+21 September 2014 created get_group_teams function. removed .lower() now get unique teams in list.
+Need to use this team list to create team objects
+'''
