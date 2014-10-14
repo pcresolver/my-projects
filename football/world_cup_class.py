@@ -27,7 +27,7 @@ def find_element(search,
 
 
 def get_fixtures():
-    with open("fixtures.txt") as fixturesfile:
+    with open("my-projects/football/fixtures.txt") as fixturesfile:
         fixtureslist = fixturesfile.read().split()
     print(fixtureslist)
     return fixtureslist

@@ -5,14 +5,15 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{97befc19-e1f6-4503-b863-5051d0400b94}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>football\world-cup-class.py</StartupFile>
+    <StartupFile>football\world_cup_class.py</StartupFile>
     <SearchPath />
-    <WorkingDirectory>.</WorkingDirectory>
+    <WorkingDirectory>H:\steve\mydata\coding</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <InterpreterId />
     <InterpreterVersion />
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -21,22 +22,22 @@
     <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="find-string.py" />
-    <Compile Include="football\football-tables-2.py" />
-    <Compile Include="football\league-orig.py" />
+    <Compile Include="find_string.py" />
+    <Compile Include="football\football_tables_2.py" />
+    <Compile Include="football\league_orig.py" />
     <Compile Include="football\league.py" />
-    <Compile Include="football\test %281%29.py" />
-    <Compile Include="football\test %282%29.py" />
+    <Compile Include="football\test_1.py" />
+    <Compile Include="football\test_2.py" />
     <Compile Include="football\testing.py" />
-    <Compile Include="football\world-cup-class.py" />
-    <Compile Include="football\world-cup.py" />
+    <Compile Include="football\world_cup_class.py" />
+    <Compile Include="football\world_cup.py" />
     <Compile Include="learning\classes.py" />
-    <Compile Include="skype\parse-skype-calls.py" />
-    <Compile Include="test %282%29.py" />
+    <Compile Include="skype\parse_skype_calls.py" />
+    <Compile Include="test_2.py" />
     <Compile Include="test.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="football\fixtures-team.txt" />
+    <Content Include="football\fixtures_team.txt" />
     <Content Include="football\fixtures.txt">
       <Publish>True</Publish>
     </Content>

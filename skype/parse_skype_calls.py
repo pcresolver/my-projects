@@ -7,7 +7,7 @@ A Python script to take the content of a file containing skype chat and producin
 
 """
 You should immediately notice that we import another handy command named exists. This returns True if a
-file exists, based on its name in a string as an argument. It returns False if not. Weâ€™ll be using this function in the
+file exists, based on its name in a string as an argument. It returns False if not. Weâ??ll be using this function in the
 second half of this book to do lots of things, but right now you should see how you can import it.
 """
 
