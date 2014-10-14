@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{97befc19-e1f6-4503-b863-5051d0400b94}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>football\world-cup-class.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+    <InterpreterVersion />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="find-string.py" />
+    <Compile Include="football\football-tables-2.py" />
+    <Compile Include="football\league-orig.py" />
+    <Compile Include="football\league.py" />
+    <Compile Include="football\test %281%29.py" />
+    <Compile Include="football\test %282%29.py" />
+    <Compile Include="football\testing.py" />
+    <Compile Include="football\world-cup-class.py" />
+    <Compile Include="football\world-cup.py" />
+    <Compile Include="learning\classes.py" />
+    <Compile Include="skype\parse-skype-calls.py" />
+    <Compile Include="test %282%29.py" />
+    <Compile Include="test.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="football\fixtures-team.txt" />
+    <Content Include="football\fixtures.txt">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="skype\copy-selection.txt" />
+    <Content Include="skype\input.txt" />
+    <Content Include="skype\output.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="football" />
+    <Folder Include="learning" />
+    <Folder Include="skype" />
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>
