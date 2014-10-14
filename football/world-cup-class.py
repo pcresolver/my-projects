@@ -8,21 +8,17 @@ def get_group_teams(resultssofar, group_teams):
         if match_result[0] not in team_list:  # need to create a team
             print(team_list)
             print("adding ", match_result[0])
-            #  create_team((match_result[0].lower()), group_teams)  # create a team object for the home team
             team_list.append(match_result[0])
             print("added: ", match_result[0] )
-            print(team_list)
+            print(team_list)            
         if match_result[2] not in team_list:
             print(team_list)
             print("adding ", match_result[2])
-            #  create_team((match_result[2].lower()), group_teams)
             team_list.append(match_result[2])
             print("added: ", match_result[2])
             print(team_list)
-        if '-' in match_result:  # no result yet. this is a future fixture so ignore this and all others that follow
-            pass
     print("final team list is: ******", team_list)
-    return
+    return team_list
 
 def find_element(search,
                  content):  # returns the first element in content that contains the element to be found - search
@@ -64,17 +60,18 @@ def split_matches(fixtures_blob, n):  # split into individual matches - split in
 
 
 def process_results(
-        resultssofar) -> object:  # using this to see if I can add goals up.
+        resultssofar, group_teams) -> object:  # using this to see if I can add goals up.
     total_goals = 0
     print("results so far: ", resultssofar)
     for match_result in resultssofar:
         print(match_result[0], " versus ", match_result[2])
-        hometeam = group_teams[(match_result[0]).lower()]  # hometeam now points to the home team object
+        # print(eval(group_teams[England]))
+        hometeam = group_teams[(match_result[0])]  # hometeam now points to the home team object
         print("home team is: ", hometeam.name)
         print("hometeam scored : ", hometeam.name, " ", hometeam.scored)
         hometeam.scored += int(match_result[1])
         print("hometeam have now scored : ", hometeam.scored)
-        awayteam = group_teams[(match_result[2]).lower()]  # hometeam now points to the home team object
+        awayteam = group_teams[(match_result[2])]  # hometeam now points to the home team object
         print("away team is: ", awayteam.name)
         print("awayteam scored : ", awayteam.scored)
         awayteam.scored += int(match_result[3])
@@ -132,10 +129,12 @@ results = clean_up(fixtures)
 print("Here are the Fixtures before results are split is called: ", fixtures)
 results = split_matches(results, 3)
 print("These are the results so far ", results)
-get_group_teams(results, group_teams)
-process_results(results) # error: team is being created twice - overwriting previous creation and resetting goals etc.
+group_teams_list = get_group_teams(results, group_teams)
+
+process_results(results, group_teams) # error: team is being created twice - overwriting previous creation and resetting goals etc.
 print("this is the teams dic: ", group_teams)
 '''
 21 September 2014 created get_group_teams function. removed .lower() now get unique teams in list.
 Need to use this team list to create team objects
 '''
+# 10 October 2014 Need to create teams from teams list in get-teams
