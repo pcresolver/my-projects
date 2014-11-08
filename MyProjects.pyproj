@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{97befc19-e1f6-4503-b863-5051d0400b94}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>football\world_cup_class.py</StartupFile>
+    <StartupFile>optimal\pagerduty-csv.py</StartupFile>
     <SearchPath />
     <WorkingDirectory>H:\data\_steve\mydata\coding\vs\my_projects</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -32,6 +32,9 @@
     <Compile Include="football\world_cup_class.py" />
     <Compile Include="football\world_cup.py" />
     <Compile Include="learning\classes.py" />
+    <Compile Include="optimal\pagerduty-csv.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="skype\parse_skype_calls.py" />
     <Compile Include="test_2.py" />
     <Compile Include="test.py" />
@@ -48,6 +51,7 @@
   <ItemGroup>
     <Folder Include="football" />
     <Folder Include="learning" />
+    <Folder Include="optimal\" />
     <Folder Include="skype" />
   </ItemGroup>
   <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
