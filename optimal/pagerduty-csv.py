@@ -43,7 +43,7 @@ def get_alerts(since, until):
     login = {'user[email]':'steve@broadbandspeedchecker.co.uk','user[password]':'pcsupager'}
     s = requests.Session()
     r = s.post(login_url, data=login, stream=True)
-    url = 'https://mysubdomain.pagerduty.com/csv/alerts'
+    url = 'https://speedchecker.pagerduty.com/csv/alerts'
     payload = {'since': since, 'until': until}
     r = s.get(url, data=payload)
     f = open('test.csv','w')
