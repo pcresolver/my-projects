@@ -48,7 +48,7 @@ def multiplyHandler(left, right):
         print(lastMultipliedHandler())
     else: # Not done this before, Need to calculate answer
         print("this is new")
-        answer = db.multiply(left, right)
+        answer = db.russian(left, right)
         updateLastMultiplied(left, right, answer)
         CACHE[key] = answer # store answer in case we are asked again
         print("Latest Result: {} " .format(answer))

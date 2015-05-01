@@ -23,28 +23,23 @@ import math # Used to use floor function to keep integar values
 import time # We will use this to test efficiency
 
 
-def multiply(left, right, answer = 0): # including answer so that it isn't reset when during iteration - default 0 so don't need to pass answer. Don't know if this is needed or best way but it works.
-    if left == 1: # odd value on left so we add to total
-        answer += right
-        return answer # we have reached end of iteration
-    else:
-        if left % 2 == 1: # odd value on left so we add to total
-            answer += right
-        left = math.floor(left/2) # requires rounding down for method to work
-        return multiply(left, right * 2, answer) # passes right * 2 as part of the method
+def russian(a, b):
+    x = a; y = b
+    z = 0 ## accumulator
+    while x > 0:
+        if x % 2 == 1: z = z + y ## modulo operator
+        y = y << 1 ## Shift binary to the left - not sure what this is doing
+        x = x >> 1 ## Shift binary to the right
+    print("Hit DB")
+    return z
 
 
-def test_multiply():
-    left = 357
-    right = 16
-    key = (left, right) # used to test if we have done this before
-   
+def test_russian():
     start_time = time.time()
-    print(multiply(357, 16, 0))
-    print("Multiply algorithm took {0} seconds ".format(time.time() - start_time))
-        
-    assert multiply(357, 16, 0) == 5712
+    print(russian(357, 16))
+    print("Russian Algorithm took {} seconds" .format(time.time()-start_time) )
+    assert russian(357, 16) == 5712
 
 if __name__ == "__main__": # this is needed to stop the following function call running when this is imported.
-    test_multiply()
+    test_russian()
 

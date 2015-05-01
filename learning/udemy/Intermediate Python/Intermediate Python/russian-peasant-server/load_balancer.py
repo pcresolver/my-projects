@@ -1,5 +1,9 @@
 ## Server names
-SERVERS = ['APP1', 'APP2', 'APP3', 'APP4']
+import computer1
+import computer2
+import computer3
+
+SERVERS = [computer1, computer2, computer3]
 
 # Solution 1 : using global variable (not ideal)
 #number_of_servers = len(SERVERS)
@@ -26,15 +30,22 @@ SERVERS = ['APP1', 'APP2', 'APP3', 'APP4']
 #    return cycle.__next__()
 
 # solution 3 Uses a generator function, yields an answer and uses 'next' to get the next result
+n = -1
 def get_server():
-    def f(): # this is a 'generator' function that changes the list - rotates the elements
-        while True: # always do this:
-            i = SERVERS.pop(0) # i now contains the first element and deletes from list
-            SERVERS.append(i) # adds what was the old first element to the end 
-            yield i # this returns 'i' and waits for the commnad 'next' to go again
-    return next(f()) 
+    global n
+    n += 1 #
+    return SERVERS[n % len(SERVERS)]
     
 ## Testing the function
 if __name__ == '__main__' : 
-    for i in range(9):
-        print(get_server()) # should get App1, 2, 3 looping
+    from random import randint
+    for i in range(10):
+        ## Generate some 'requested' numbers
+        a = randint(5, 99) # min 5 max 99
+        b = randint(5, 99)
+        server = get_server()
+        print("next is printname")
+        print(server.printName) # should get App1, 2, 3 looping
+        print("next is multiply handler")
+        print(server.multiplyHandler(a,b))
+        print(server.lastMultipliedHandler())
